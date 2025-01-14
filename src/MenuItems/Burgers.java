@@ -1,6 +1,6 @@
 package MenuItems;
 
-public class Burgers extends MenuItem{
+public class Burgers extends MenuItem {
     String name;
     double price;
     String info;
@@ -21,5 +21,12 @@ public class Burgers extends MenuItem{
 
     public String getInfo() {
         return info;
+    }
+
+    @Override
+    public String toString() {
+        return name
+                + " | W " + price
+                + " | " + info;
     }
 }

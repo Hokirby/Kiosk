@@ -22,4 +22,11 @@ public class Drinks extends MenuItem {
     public String getInfo() {
         return info;
     }
+
+    @Override
+    public String toString() {
+        return name
+                + " | W " + price
+                + " | " + info;
+    }
 }
