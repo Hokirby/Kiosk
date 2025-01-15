@@ -3,8 +3,8 @@ import MenuItems.MenuItem;
 import java.util.ArrayList;
 
 public class Menu {
-    private ArrayList<MenuItem>[] menuItems; //메뉴 리스트
     private final ShoppingCart shoppingCart = new ShoppingCart();
+    private ArrayList<MenuItem>[] menuItems; //메뉴 리스트
 
     //메뉴 카테고리 수 설정
     public void setMenuCategories(int categoryNum) {
@@ -45,6 +45,12 @@ public class Menu {
         return menuItems[categoryNum - 1].get(orderNum - 1);
     }
 
+    //카테고리 getter
+    public ArrayList<MenuItem> getCategory(int categoryNum) {
+        return menuItems[categoryNum - 1];
+    }
+
+    //ShoppingCart 객체 getter
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

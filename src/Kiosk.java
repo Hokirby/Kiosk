@@ -8,11 +8,11 @@ public class Kiosk {
     }
 
     public int validateInputNumber(int min, int max, String input) throws IllegalArgumentException {
-        String regex = "^[" + min + "-" + max + "]$"; // 정규식: min~max 한 자리 숫자만 허용
+        String regex = "^[" + min + "-" + max + "]$"; // 정규식: min ~ max 한 자리 숫자만 허용
         if (input.matches(regex)) {
             return Integer.parseInt(input);
         } else {
-            System.out.println("Invalid Input");
+            OrderLogger.logger.info("Invalid Input");
             throw new IllegalArgumentException("");
         }
     }
@@ -41,12 +41,17 @@ public class Kiosk {
                     continue;
                 } else if (categoryNum == 4) {
                     OrderLogger.logger.info("아래와 같이 주문하시겠습니까?");
-                    menu.getShoppingCart().logSoppingList();
+                    menu.getShoppingCart().logShoppingList();
                     OrderLogger.logger.info("[ Total ]\nW " + menu.getShoppingCart().getOrderSum());
                     OrderLogger.logger.info("1. 주문\t\t2. 메뉴판");
                     int completeNum = validateInputNumber(1, 2, sc.nextLine());
                     if (completeNum == 1) {
-                        OrderLogger.logger.info("주문이 완료되었습니다. 금액은 W " + menu.getShoppingCart().getOrderSum() + " 입니다.");
+                        OrderLogger.logger.info("할인 정보를 입력해주세요");
+                        DiscountType.logDiscountType();
+                        int discountNum = validateInputNumber(1, DiscountType.values().length + 1, sc.nextLine());
+                        OrderLogger.logger.info("주문이 완료되었습니다. 금액은 W "
+                                + DiscountType.calculateOrderSum(menu.getShoppingCart().getOrderSum(), DiscountType.getDiscountType(discountNum))
+                                + " 입니다.");
                         menu.getShoppingCart().clearShoppingList();
                         continue;
                     } else if (completeNum == 2) {
@@ -57,7 +62,7 @@ public class Kiosk {
                 }
                 menu.logMenuItems(categoryNum);
                 OrderLogger.logger.info("0. 뒤로가기");
-                int orderNum = validateInputNumber(0, 3, sc.nextLine());
+                int orderNum = validateInputNumber(0, menu.getCategory(categoryNum).size(), sc.nextLine());
                 if (orderNum == 0) {
                     continue;
                 }
@@ -70,7 +75,7 @@ public class Kiosk {
                     menu.getShoppingCart().setShoppingList(menu.getMenu(categoryNum, orderNum));
                     OrderLogger.logger.info(menu.getMenu(categoryNum, orderNum).getName() + " 이/가 장바구니에 추가되었습니다.");
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 continue;
             }
         }

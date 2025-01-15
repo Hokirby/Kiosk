@@ -16,7 +16,7 @@ public class ShoppingCart {
     }
 
     //장바구니 모든 메뉴 출력 기능
-    public void logSoppingList() {
+    public void logShoppingList() {
         OrderLogger.logger.info("[ Orders ]");
         for (int i = 0; i < shoppingList.size(); i++) {
             OrderLogger.logger.info((i + 1) + ". " + shoppingList.get(i).toString());
