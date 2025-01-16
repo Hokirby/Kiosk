@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class ShoppingCart {
-    private final HashMap<MenuItem, Integer> shoppingCart = new HashMap<>();//장바구니 리스트
+    private final HashMap<MenuItem, Integer> shoppingCart = new HashMap<>();//장바구니
 
     //장바구니 담기 기능
     public void addToShoppingCart(MenuItem menuItem) {
@@ -23,8 +23,16 @@ public class ShoppingCart {
     //장바구니 모든 메뉴 출력 기능
     public void logShoppingList() {
         OrderLogger.logger.info("[ Orders ]");
-        shoppingCart.entrySet().stream()
+        shoppingCart.entrySet()
                 .forEach(entry -> OrderLogger.logger.info(entry.getValue() + " | " + entry.getKey().toString()));
+    }
+
+    //장바구니 상품 제거 기능
+    public void removeShoppingMenu(String name) {
+        shoppingCart.remove(shoppingCart.keySet().stream()
+                .filter(key -> key.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseThrow());
     }
 
     //잘바구나 모든 메뉴 삭제 기능

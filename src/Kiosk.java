@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Kiosk {
@@ -43,8 +44,8 @@ public class Kiosk {
                     OrderLogger.logger.info("아래와 같이 주문하시겠습니까?");
                     menu.getShoppingCart().logShoppingList();
                     OrderLogger.logger.info("[ Total ]\nW " + menu.getShoppingCart().getOrderSum());
-                    OrderLogger.logger.info("1. 주문\t\t2. 메뉴판");
-                    int completeNum = validateInputNumber(1, 2, sc.nextLine());
+                    OrderLogger.logger.info("1. 주문\t\t2. 메뉴판\t\t3. 상품 제거");
+                    int completeNum = validateInputNumber(1, 3, sc.nextLine());
                     if (completeNum == 1) {
                         OrderLogger.logger.info("할인 정보를 입력해주세요");
                         DiscountType.logDiscountType();
@@ -53,6 +54,12 @@ public class Kiosk {
                                 + DiscountType.calculateOrderSum(menu.getShoppingCart().getOrderSum(), DiscountType.getDiscountType(discountNum))
                                 + " 입니다.");
                         menu.getShoppingCart().clearShoppingList();
+                        continue;
+                    } else if (completeNum == 3) {
+                        OrderLogger.logger.info("제거할 상품의 이름을 영어로 입력해주세요.");
+                        String name = sc.nextLine();
+                        menu.getShoppingCart().removeShoppingMenu(name);
+                        OrderLogger.logger.info("입력하신 " + name + "이/가 성공적으로 제거되었습니다");
                         continue;
                     } else if (completeNum == 2) {
                         continue;
@@ -77,6 +84,8 @@ public class Kiosk {
                 }
             } catch (IllegalArgumentException e) {
                 continue;
+            } catch (NoSuchElementException e) {
+                OrderLogger.logger.info("Value Not Found");
             }
         }
     }
