@@ -27,14 +27,14 @@ public class Menu {
     public void logCategories() {
         int i = 1;
         for (ArrayList<MenuItem> list : menuItems) {
-            OrderLogger.logger.info(i + ". " + list.get(0).getClass().toString().split("\\.")[1]);
+            OrderLogger.logger.info(i + ". " + list.get(0).getCategory());
             i++;
         }
     }
 
     //콘솔창에 카테고리 정보 출력
     public void logMenuItems(int categoryNum) {
-        OrderLogger.logger.info("[ " + menuItems[categoryNum - 1].get(0).getClass().toString().split("\\.")[1] + " MENU ]");
+        OrderLogger.logger.info("[ " + menuItems[categoryNum - 1].get(0).getCategory() + " MENU ]");
         for (int i = 0; i < menuItems[categoryNum - 1].size(); i++) {
             OrderLogger.logger.info((i + 1) + ". " + menuItems[categoryNum - 1].get(i).toString());
         }

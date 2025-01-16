@@ -26,7 +26,7 @@ public class Kiosk {
                 OrderLogger.logger.info("[ SHAKESHACK MENU ]");
                 menu.logCategories();
                 OrderLogger.logger.info("0. 종료\t| 종료");
-                if (!(menu.getShoppingCart().isShoppingListEmpty())) {
+                if (!(menu.getShoppingCart().isShoppingCartEmpty())) {
                     OrderLogger.logger.info("[ ORDER MENU ]");
                     OrderLogger.logger.info("4. Orders\t\t| 장바구니 확인 후 주문합니다.");
                     OrderLogger.logger.info("5. Cancel\t\t| 진행중인 주문을 취소합니다.");
@@ -36,7 +36,7 @@ public class Kiosk {
                     OrderLogger.logger.info("프로그램을 종료합니다.");
                     System.exit(0);
                 }
-                if (menu.getShoppingCart().isShoppingListEmpty() && menu.getMenuItems().length < categoryNum) { //장바구니가 비어있고 입력 정보가 존재하는 카테고리 수 보다 큰 수일 경우 예외처리
+                if (menu.getShoppingCart().isShoppingCartEmpty() && menu.getMenuItems().length < categoryNum) { //장바구니가 비어있고 입력 정보가 존재하는 카테고리 수 보다 큰 수일 경우 예외처리
                     OrderLogger.logger.info("Invalid Number");
                     continue;
                 } else if (categoryNum == 4) {
@@ -72,7 +72,7 @@ public class Kiosk {
                 OrderLogger.logger.info("1. 확인\t\t2. 취소");
                 int confirmNum = validateInputNumber(1, 2, sc.nextLine());
                 if (confirmNum == 1) {
-                    menu.getShoppingCart().setShoppingList(menu.getMenu(categoryNum, orderNum));
+                    menu.getShoppingCart().addToShoppingCart(menu.getMenu(categoryNum, orderNum));
                     OrderLogger.logger.info(menu.getMenu(categoryNum, orderNum).getName() + " 이/가 장바구니에 추가되었습니다.");
                 }
             } catch (IllegalArgumentException e) {

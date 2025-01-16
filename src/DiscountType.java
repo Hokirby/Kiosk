@@ -23,9 +23,9 @@ public enum DiscountType {
 
     //직업과 할인율 퍼센트 로그 (숫자 -> 할인율 * 100)
     public static void logDiscountType() {
-        for (int i = 1; i <= DiscountType.values().length; i++) {
-            OrderLogger.logger.info(i + ". " + DiscountType.values()[i - 1].job
-                    + " : " + (100 * DiscountType.values()[i - 1].discountRate) + "%");
+        for (int i = 0; i < DiscountType.values().length; i++) {
+            OrderLogger.logger.info((i + 1) + ". " + DiscountType.values()[i].job
+                    + " : " + (100 * DiscountType.values()[i].discountRate) + "%");
         }
     }
 

@@ -4,6 +4,7 @@ public abstract class MenuItem {
     String name;
     double price;
     String info;
+    String category = "MenuItem";
 
     public MenuItem(String name, double price, String info) {
         this.name = name;
@@ -19,8 +20,8 @@ public abstract class MenuItem {
         return price;
     }
 
-    public String getInfo() {
-        return info;
+    public String getCategory() {
+        return category;
     }
 
     @Override
