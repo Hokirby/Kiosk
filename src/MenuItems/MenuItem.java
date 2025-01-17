@@ -26,8 +26,6 @@ public abstract class MenuItem {
 
     @Override
     public String toString() {
-        return name
-                + " | W " + price
-                + " | " + info;
+        return String.format("%-15s | W %-4.1f | %s", name, price, info);
     }
 }
