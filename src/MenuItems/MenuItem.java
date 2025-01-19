@@ -1,10 +1,10 @@
 package MenuItems;
 
 public abstract class MenuItem {
-    String name;
-    double price;
-    String info;
-    String category = "MenuItem";
+    private final String name;
+    private final double price;
+    private final String info;
+    protected String category = "MenuItem";
 
     public MenuItem(String name, double price, String info) {
         this.name = name;
