@@ -6,13 +6,13 @@ public class OrderLogger {
     static void formatLogger() {
         Logger rootLogger = Logger.getLogger("");
         for (Handler handler : rootLogger.getHandlers()) {
-            rootLogger.removeHandler(handler);
+            rootLogger.removeHandler(handler); //기본 handler 제거
         }
         ConsoleHandler ch = new ConsoleHandler();
         ch.setLevel(Level.ALL);
-        ch.setFormatter(new Formatter() {
+        ch.setFormatter(new Formatter() { //Formatter 재정의
             @Override
-            public String format(LogRecord record) {
+            public String format(LogRecord record) { //타임스팸프 제거, 로그 레벨 출력 제거, 개행 추가
                 return record.getMessage() + "\n";
             }
         });

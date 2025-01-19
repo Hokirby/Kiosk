@@ -14,7 +14,7 @@ public enum DiscountType {
         this.discountRate = discountRate;
     }
 
-    //enum 리턴
+    //DiscountType 리턴
     public static DiscountType getDiscountType(int num) {
         return Arrays.stream(DiscountType.values())
                 .toList()

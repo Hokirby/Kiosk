@@ -35,7 +35,7 @@ public class ShoppingCart {
                 .orElseThrow());
     }
 
-    //잘바구나 모든 메뉴 삭제 기능
+    //장바구나 모든 메뉴 삭제 기능
     public void clearShoppingList() {
         shoppingCart.clear();
     }
