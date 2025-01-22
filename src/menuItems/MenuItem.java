@@ -1,10 +1,9 @@
-package MenuItems;
+package menuItems;
 
 public abstract class MenuItem {
     private final String name;
     private final double price;
     private final String info;
-    protected String category = "MenuItem";
 
     public MenuItem(String name, double price, String info) {
         this.name = name;
@@ -18,10 +17,6 @@ public abstract class MenuItem {
 
     public double getPrice() {
         return price;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     @Override

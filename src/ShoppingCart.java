@@ -1,4 +1,4 @@
-import MenuItems.MenuItem;
+import menuItems.MenuItem;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -21,7 +21,7 @@ public class ShoppingCart {
     }
 
     //장바구니 모든 메뉴 출력 기능
-    public void logShoppingList() {
+    public void printShoppingList() {
         OrderLogger.logger.info("[ Orders ]");
         shoppingCart.entrySet()
                 .forEach(entry -> OrderLogger.logger.info(entry.getValue() + " | " + entry.getKey().toString()));

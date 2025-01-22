@@ -15,14 +15,14 @@ public enum DiscountType {
     }
 
     //DiscountType 리턴
-    public static DiscountType getDiscountType(int num) {
+    public static DiscountType getDiscountTypeByIndex(int num) {
         return Arrays.stream(DiscountType.values())
                 .toList()
-                .get(num - 1);
+                .get(num);
     }
 
     //직업과 할인율 퍼센트 로그 (숫자 -> 할인율 * 100)
-    public static void logDiscountType() {
+    public static void printDiscountType() {
         for (int i = 0; i < DiscountType.values().length; i++) {
             OrderLogger.logger.info((i + 1) + ". " + DiscountType.values()[i].job
                     + " : " + (100 * DiscountType.values()[i].discountRate) + "%");
